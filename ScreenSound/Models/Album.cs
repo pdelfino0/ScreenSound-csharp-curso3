@@ -1,8 +1,9 @@
 ﻿namespace ScreenSound.Models;
 
-class Album
+public class Album : IAvaliavel
 {
     private List<Musica> musicas = new List<Musica>();
+    private List<Avaliacao> notas = new List<Avaliacao>();
 
     public Album(string nome)
     {
@@ -27,5 +28,19 @@ class Album
         }
 
         Console.WriteLine($"\nPara ouvir este álbum inteiro você precisa de {DuracaoTotal}");
+    }
+
+    public void AdicionarNota(Avaliacao nota)
+    {
+        notas.Add(nota);
+    }
+
+    public double Media
+    {
+        get
+        {
+            if (notas.Count == 0) return 0;
+            return notas.Average(n => n.Nota);
+        }
     }
 }
